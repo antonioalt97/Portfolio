@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Blog - Portfolio Showcase</title>
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<script type="module" src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fportfolio4524back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.8"></script>
+<script type="module" src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+</head>
+<body class="bg-background min-h-screen font-inter">
+    <!-- Navigation Header -->
+    <nav class="bg-surface border-b border-secondary-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="portfolio_dashboard.html" class="flex items-center space-x-2">
+                        <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        <span class="text-xl font-bold text-text-primary">Portfolio Pro</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="portfolio_dashboard.html" class="text-text-secondary hover:text-primary transition-smooth">Dashboard</a>
+                    <a href="project_showcase.html" class="text-text-secondary hover:text-primary transition-smooth">Proyectos</a>
+                    <a href="skills_management.html" class="text-text-secondary hover:text-primary transition-smooth">Habilidades</a>
+                    <a href="blog_management.html" class="text-primary font-medium">Blog</a>
+                    <a href="contact_management.html" class="text-text-secondary hover:text-primary transition-smooth">Contacto</a>
+                </div>
+
+                <!-- User Menu -->
+                <div class="flex items-center space-x-4">
+                    <button id="notifications-btn" class="relative p-2 text-text-secondary hover:text-primary transition-smooth">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM10.5 17H15l-5 5v-5z"/>
+                        </svg>
+                        <span class="absolute -top-1 -right-1 bg-error text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                    </button>
+                    
+                    <div class="relative">
+                        <button id="user-menu-btn" class="flex items-center space-x-2 p-2 rounded-md hover:bg-secondary-100 transition-smooth">
+                            <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Usuario" class="w-8 h-8 rounded-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1584824486509-112e4181ff6b?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'; this.onerror=null;" />
+                            <span class="text-text-primary font-medium hidden sm:block">Admin</span>
+                            <svg class="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- User Dropdown -->
+                        <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-surface rounded-modern card-shadow border border-secondary-200">
+                            <div class="py-1">
+                                <a href="portfolio_dashboard.html" class="block px-4 py-2 text-sm text-text-secondary hover:bg-secondary-100 transition-smooth">Mi Perfil</a>
+                                <a href="javascript:void(0)" class="block px-4 py-2 text-sm text-text-secondary hover:bg-secondary-100 transition-smooth">Configuración</a>
+                                <hr class="my-1 border-secondary-200" />
+                                <a href="user_authentication.html" class="block px-4 py-2 text-sm text-text-secondary hover:bg-secondary-100 transition-smooth">Cerrar Sesión</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-text-secondary hover:text-primary p-2">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-surface border-t border-secondary-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="portfolio_dashboard.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-smooth">Dashboard</a>
+                <a href="project_showcase.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-smooth">Proyectos</a>
+                <a href="skills_management.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-smooth">Habilidades</a>
+                <a href="blog_management.html" class="block px-3 py-2 text-primary font-medium">Blog</a>
+                <a href="contact_management.html" class="block px-3 py-2 text-text-secondary hover:text-primary transition-smooth">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header Section -->
+        <div class="mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-text-primary">Gestión de Blog</h1>
+                    <p class="mt-2 text-text-secondary">Crea y gestiona artículos técnicos para demostrar tu experiencia</p>
+                </div>
+                <div class="mt-4 sm:mt-0 flex space-x-3">
+                    <button id="new-article-btn" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-700 transition-smooth flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                        </svg>
+                        <span>Nuevo Artículo</span>
+                    </button>
+                    <button id="view-toggle" class="bg-secondary-200 text-text-secondary px-4 py-2 rounded-md hover:bg-secondary-300 transition-smooth">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <!-- Article List Sidebar -->
+            <div class="lg:col-span-1">
+                <div class="bg-surface rounded-modern card-shadow border border-secondary-200">
+                    <div class="p-6 border-b border-secondary-200">
+                        <h3 class="text-lg font-semibold text-text-primary mb-4">Mis Artículos</h3>
+                        
+                        <!-- Search and Filter -->
+                        <div class="space-y-3">
+                            <div class="relative">
+                                <input type="text" id="article-search" placeholder="Buscar artículos..." class="w-full pl-10 pr-4 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth" />
+                                <svg class="absolute left-3 top-2.5 w-5 h-5 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                </svg>
+                            </div>
+                            
+                            <select id="status-filter" class="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth">
+                                <option value="all">Todos los estados</option>
+                                <option value="published">Publicados</option>
+                                <option value="draft">Borradores</option>
+                                <option value="scheduled">Programados</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Article List -->
+                    <div class="max-h-96 overflow-y-auto">
+                        <div id="articles-list" class="divide-y divide-secondary-200">
+                            <!-- Article Item 1 -->
+                            <div class="article-item p-4 hover:bg-secondary-50 cursor-pointer transition-smooth" data-article-id="1">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="text-sm font-medium text-text-primary truncate">Introducción a React Hooks</h4>
+                                        <p class="text-xs text-text-secondary mt-1">07/10/2025</p>
+                                        <div class="flex items-center mt-2 space-x-2">
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-success-100 text-success">
+                                                Publicado
+                                            </span>
+                                            <span class="text-xs text-text-secondary">1.2k vistas</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-1 ml-2">
+                                        <button class="p-1 text-text-secondary hover:text-primary transition-smooth">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="p-1 text-text-secondary hover:text-error transition-smooth">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Article Item 2 -->
+                            <div class="article-item p-4 hover:bg-secondary-50 cursor-pointer transition-smooth" data-article-id="2">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="text-sm font-medium text-text-primary truncate">Optimización de Performance en JavaScript</h4>
+                                        <p class="text-xs text-text-secondary mt-1">05/10/2025</p>
+                                        <div class="flex items-center mt-2 space-x-2">
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-warning-100 text-warning">
+                                                Borrador
+                                            </span>
+                                            <span class="text-xs text-text-secondary">Auto-guardado</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-1 ml-2">
+                                        <button class="p-1 text-text-secondary hover:text-primary transition-smooth">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="p-1 text-text-secondary hover:text-error transition-smooth">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analytics Summary -->
+                <div class="mt-6 bg-surface rounded-modern card-shadow border border-secondary-200 p-6">
+                    <h3 class="text-lg font-semibold text-text-primary mb-4">Estadísticas</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Total Artículos</span>
+                            <span class="font-semibold text-text-primary">12</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Publicados</span>
+                            <span class="font-semibold text-success">8</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Borradores</span>
+                            <span class="font-semibold text-warning">4</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-text-secondary">Total Vistas</span>
+                            <span class="font-semibold text-primary">15.7k</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Editor Area -->
+            <div class="lg:col-span-3">
+                <div class="bg-surface rounded-modern card-shadow border border-secondary-200">
+                    <!-- Editor Header -->
+                    <div class="p-6 border-b border-secondary-200">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+                            <div class="flex-1">
+                                <input type="text" id="article-title" placeholder="Título del artículo..." class="text-2xl font-bold text-text-primary bg-transparent border-none outline-none w-full placeholder-text-secondary" value="Introducción a React Hooks" />
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <button id="save-draft" class="px-4 py-2 text-text-secondary hover:text-primary transition-smooth">
+                                    <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3-3m0 0l-3 3m3-3v12"/>
+                                    </svg>
+                                    Guardar
+                                </button>
+                                <button id="preview-toggle" class="px-4 py-2 bg-secondary-200 text-text-secondary rounded-md hover:bg-secondary-300 transition-smooth">
+                                    Vista Previa
+                                </button>
+                                <button id="publish-btn" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-700 transition-smooth">
+                                    Publicar
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Article Metadata -->
+                        <div class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Categoría</label>
+                                <select id="article-category" class="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth">
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="react">React</option>
+                                    <option value="nodejs">Node.js</option>
+                                    <option value="css">CSS</option>
+                                    <option value="general">General</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Estado</label>
+                                <select id="article-status" class="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth">
+                                    <option value="draft">Borrador</option>
+                                    <option value="published">Publicado</option>
+                                    <option value="scheduled">Programado</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-text-primary mb-2">Fecha de Publicación</label>
+                                <input type="datetime-local" id="publish-date" class="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth" value="2025-10-07T15:30" />
+                            </div>
+                        </div>
+
+                        <!-- Tags Input -->
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-text-primary mb-2">Etiquetas</label>
+                            <div class="flex flex-wrap items-center gap-2 p-2 border border-secondary-300 rounded-md focus-within:ring-2 focus-within:ring-primary focus-within:border-transparent">
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary">
+                                    React
+                                    <button class="ml-1 text-primary hover:text-primary-700">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                        </svg>
+                                    </button>
+                                </span>
+                                <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary">
+                                    Hooks
+                                    <button class="ml-1 text-primary hover:text-primary-700">
+                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                        </svg>
+                                    </button>
+                                </span>
+                                <input type="text" id="tag-input" placeholder="Agregar etiqueta..." class="flex-1 min-w-0 border-none outline-none bg-transparent" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Editor Toolbar -->
+                    <div class="px-6 py-3 border-b border-secondary-200 bg-secondary-50">
+                        <div class="flex items-center space-x-1 overflow-x-auto">
+                            <button class="p-2 text-text-secondary hover:text-primary hover:bg-surface rounded transition-smooth" title="Negrita">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 4h8a4 4 0 014 4 4 4 0 01-4 4H6z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 12h9a4 4 0 014 4 4 4 0 01-4 4H6z"/>
+                                </svg>
+                            </button>
+                            <button class="p-2 text-text-secondary hover:text-primary hover:bg-surface rounded transition-smooth" title="Cursiva">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 4l4 16"/>
+                                </svg>
+                            </button>
+                            <button class="p-2 text-text-secondary hover:text-primary hover:bg-surface rounded transition-smooth" title="Enlace">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                                </svg>
+                            </button>
+                            <div class="w-px h-6 bg-secondary-300"></div>
+                            <button class="p-2 text-text-secondary hover:text-primary hover:bg-surface rounded transition-smooth" title="Código">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                                </svg>
+                            </button>
+                            <button class="p-2 text-text-secondary hover:text-primary hover:bg-surface rounded transition-smooth" title="Imagen">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                </svg>
+                            </button>
+                            <button class="p-2 text-text-secondary hover:text-primary hover:bg-surface rounded transition-smooth" title="Lista">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/>
+                                </svg>
+                            </button>
+                            <div class="w-px h-6 bg-secondary-300"></div>
+                            <select class="px-3 py-1 text-sm border border-secondary-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+                                <option>Párrafo</option>
+                                <option>Título 1</option>
+                                <option>Título 2</option>
+                                <option>Título 3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Editor Content -->
+                    <div class="flex">
+                        <!-- Editor Pane -->
+                        <div id="editor-pane" class="flex-1 p-6">
+                            <textarea id="markdown-editor" class="w-full h-96 resize-none border-none outline-none font-mono text-sm leading-relaxed" placeholder="Escribe tu artículo en Markdown...">
+# Introducción a React Hooks
+
+Los React Hooks revolucionaron la forma en que escribimos componentes en React. Introducidos en la versión 16.8, nos permiten usar estado y otras características de React sin escribir una clase.
+
+## ¿Qué son los Hooks?
+
+Los Hooks son funciones que te permiten "engancharte" al estado de React y a las características del ciclo de vida desde componentes funcionales.
+
+import React, { useState, useEffect } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `Contador: ${count}`;
+  });
+
+  return (
+    <div>
+      <p>Has hecho clic {count} veces</p>
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Hacer clic
+      &lt;/button&gt;
+    </div>
+  );
+}
+
+## Ventajas de los Hooks
+
+1. **Reutilización de lógica**: Los hooks personalizados permiten extraer lógica de componentes
+2. **Componentes más simples**: Eliminan la complejidad de las clases
+3. **Mejor rendimiento**: Optimizaciones automáticas del compilador
+
+## Hooks más utilizados
+
+### useState
+Permite agregar estado local a componentes funcionales.
+
+### useEffect
+Permite realizar efectos secundarios en componentes funcionales.
+
+### useContext
+Permite consumir contexto sin anidar componentes.
+
+¡Los Hooks han cambiado completamente el desarrollo con React!
+                            </textarea>
+                        </div>
+
+                        <!-- Preview Pane -->
+                        <div id="preview-pane" class="hidden flex-1 p-6 border-l border-secondary-200 bg-secondary-50">
+                            <div id="preview-content" class="prose prose-sm max-w-none">
+                                <h1>Introducción a React Hooks</h1>
+                                <p>Los React Hooks revolucionaron la forma en que escribimos componentes en React. Introducidos en la versión 16.8, nos permiten usar estado y otras características de React sin escribir una clase.</p>
+                                
+                                <h2>¿Qué son los Hooks?</h2>
+                                <p>Los Hooks son funciones que te permiten "engancharte" al estado de React y a las características del ciclo de vida desde componentes funcionales.</p>
+                                
+                                <div class="bg-secondary-800 text-secondary-100 p-4 rounded-md font-mono text-sm overflow-x-auto">
+                                    <pre><code>import React, { useState, useEffect } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `Contador: ${count}`;
+  });
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Has hecho clic {count} veces&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Hacer clic
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                                </div>
+                                
+                                <h2>Ventajas de los Hooks</h2>
+                                <ol>
+                                    <li><strong>Reutilización de lógica</strong>: Los hooks personalizados permiten extraer lógica de componentes</li>
+                                    <li><strong>Componentes más simples</strong>: Eliminan la complejidad de las clases</li>
+                                    <li><strong>Mejor rendimiento</strong>: Optimizaciones automáticas del compilador</li>
+                                </ol>
+                                
+                                <h2>Hooks más utilizados</h2>
+                                
+                                <h3>useState</h3>
+                                <p>Permite agregar estado local a componentes funcionales.</p>
+                                
+                                <h3>useEffect</h3>
+                                <p>Permite realizar efectos secundarios en componentes funcionales.</p>
+                                
+                                <h3>useContext</h3>
+                                <p>Permite consumir contexto sin anidar componentes.</p>
+                                
+                                <p>¡Los Hooks han cambiado completamente el desarrollo con React!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEO and Publishing Options -->
+                    <div class="p-6 border-t border-secondary-200 bg-secondary-50">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- SEO Section -->
+                            <div>
+                                <h4 class="text-lg font-semibold text-text-primary mb-4">Optimización SEO</h4>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-text-primary mb-2">
+                                            Meta Descripción
+                                            <span class="text-xs text-text-secondary">(160 caracteres máx.)</span>
+                                        </label>
+                                        <textarea id="meta-description" rows="3" class="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth" placeholder="Descripción breve del artículo para motores de búsqueda...">Aprende los fundamentos de React Hooks y cómo revolucionan el desarrollo de componentes funcionales en React 16.8+</textarea>
+                                        <div class="mt-1 text-xs text-text-secondary">
+                                            <span id="meta-char-count">98</span>/160 caracteres
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label class="block text-sm font-medium text-text-primary mb-2">URL Slug</label>
+                                        <input type="text" id="url-slug" class="w-full px-3 py-2 border border-secondary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-smooth" value="introduccion-react-hooks" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Publishing Options -->
+                            <div>
+                                <h4 class="text-lg font-semibold text-text-primary mb-4">Opciones de Publicación</h4>
+                                <div class="space-y-4">
+                                    <div class="flex items-center space-x-3">
+                                        <input type="checkbox" id="featured-article" class="h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded" />
+                                        <label for="featured-article" class="text-sm text-text-primary">Artículo destacado</label>
+                                    </div>
+                                    
+                                    <div class="flex items-center space-x-3">
+                                        <input type="checkbox" id="allow-comments" class="h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded" checked />
+                                        <label for="allow-comments" class="text-sm text-text-primary">Permitir comentarios</label>
+                                    </div>
+                                    
+                                    <div class="flex items-center space-x-3">
+                                        <input type="checkbox" id="social-share" class="h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded" checked />
+                                        <label for="social-share" class="text-sm text-text-primary">Compartir automáticamente en redes sociales</label>
+                                    </div>
+                                    
+                                    <div class="flex items-center space-x-3">
+                                        <input type="checkbox" id="newsletter" class="h-4 w-4 text-primary focus:ring-primary border-secondary-300 rounded" />
+                                        <label for="newsletter" class="text-sm text-text-primary">Incluir en newsletter</label>
+                                    </div>
+                                </div>
+
+                                <!-- Readability Score -->
+                                <div class="mt-6 p-4 bg-surface rounded-md border border-secondary-200">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm font-medium text-text-primary">Puntuación de Legibilidad</span>
+                                        <span class="text-sm font-semibold text-success">85/100</span>
+                                    </div>
+                                    <div class="w-full bg-secondary-200 rounded-full h-2">
+                                        <div class="bg-success h-2 rounded-full" style="width: 85%"></div>
+                                    </div>
+                                    <p class="text-xs text-text-secondary mt-2">Excelente legibilidad para audiencia técnica</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Publish Modal -->
+    <div id="publish-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-surface rounded-modern modal-shadow max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold text-text-primary">Publicar Artículo</h3>
+                <button id="close-publish-modal" class="text-text-secondary hover:text-text-primary">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <p class="text-text-secondary mb-4">¿Estás seguro de que quieres publicar este artículo?</p>
+                    <div class="bg-secondary-50 p-4 rounded-md">
+                        <h4 class="font-medium text-text-primary">Introducción a React Hooks</h4>
+                        <p class="text-sm text-text-secondary mt-1">Categoría: JavaScript • 8 min de lectura</p>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-3">
+                    <button id="confirm-publish" class="flex-1 bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-700 transition-smooth">
+                        Publicar Ahora
+                    </button>
+                    <button id="schedule-publish" class="flex-1 bg-secondary-200 text-text-secondary py-2 px-4 rounded-md hover:bg-secondary-300 transition-smooth">
+                        Programar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div id="success-message" class="hidden fixed top-4 right-4 bg-success-100 border border-success text-success-500 px-4 py-3 rounded-md z-50">
+        <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+            </svg>
+            <span id="success-text">¡Artículo guardado exitosamente!</span>
+        </div>
+    </div>
+
+    <div id="error-message" class="hidden fixed top-4 right-4 bg-error-100 border border-error text-error-500 px-4 py-3 rounded-md z-50">
+        <div class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+            </svg>
+            <span id="error-text">Error al guardar el artículo</span>
+        </div>
+    </div>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // User dropdown toggle
+        const userMenuBtn = document.getElementById('user-menu-btn');
+        const userDropdown = document.getElementById('user-dropdown');
+
+        userMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', () => {
+            userDropdown.classList.add('hidden');
+        });
+
+        // Preview toggle functionality
+        const previewToggle = document.getElementById('preview-toggle');
+        const editorPane = document.getElementById('editor-pane');
+        const previewPane = document.getElementById('preview-pane');
+        let isPreviewMode = false;
+
+        previewToggle.addEventListener('click', () => {
+            isPreviewMode = !isPreviewMode;
+            
+            if (isPreviewMode) {
+                editorPane.classList.add('hidden');
+                previewPane.classList.remove('hidden');
+                previewToggle.textContent = 'Editor';
+                previewToggle.classList.add('bg-primary', 'text-white');
+                previewToggle.classList.remove('bg-secondary-200', 'text-text-secondary');
+            } else {
+                editorPane.classList.remove('hidden');
+                previewPane.classList.add('hidden');
+                previewToggle.textContent = 'Vista Previa';
+                previewToggle.classList.remove('bg-primary', 'text-white');
+                previewToggle.classList.add('bg-secondary-200', 'text-text-secondary');
+            }
+        });
+
+        // Article list item selection
+        const articleItems = document.querySelectorAll('.article-item');
+        articleItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Remove active state from all items
+                articleItems.forEach(i => i.classList.remove('bg-primary-50', 'border-l-4', 'border-primary'));
+                
+                // Add active state to clicked item
+                item.classList.add('bg-primary-50', 'border-l-4', 'border-primary');
+                
+                // Load article content (mock functionality)
+                const articleId = item.dataset.articleId;
+                loadArticle(articleId);
+            });
+        });
+
+        // Mock article loading
+        function loadArticle(articleId) {
+            const articles = {
+                '1': {
+                    title: 'Introducción a React Hooks',
+                    content: `# Introducción a React Hooks
+
+Los React Hooks revolucionaron la forma en que escribimos componentes en React...`,
+                    category: 'react',
+                    status: 'published',
+                    tags: ['React', 'Hooks', 'JavaScript']
+                },
+                '2': {
+                    title: 'Optimización de Performance en JavaScript',
+                    content: `# Optimización de Performance en JavaScript
+
+La optimización de performance es crucial para crear aplicaciones web rápidas...`,
+                    category: 'javascript',
+                    status: 'draft',
+                    tags: ['JavaScript', 'Performance', 'Optimización']
+                }
+            };
+
+            const article = articles[articleId];
+            if (article) {
+                document.getElementById('article-title').value = article.title;
+                document.getElementById('markdown-editor').value = article.content;
+                document.getElementById('article-category').value = article.category;
+                document.getElementById('article-status').value = article.status;
+                
+                // Update tags
+                updateTagsDisplay(article.tags);
+            }
+        }
+
+        // Tag management
+        const tagInput = document.getElementById('tag-input');
+        let currentTags = ['React', 'Hooks'];
+
+        tagInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && tagInput.value.trim()) {
+                e.preventDefault();
+                addTag(tagInput.value.trim());
+                tagInput.value = '';
+            }
+        });
+
+        function addTag(tagText) {
+            if (!currentTags.includes(tagText)) {
+                currentTags.push(tagText);
+                updateTagsDisplay(currentTags);
+            }
+        }
+
+        function removeTag(tagText) {
+            currentTags = currentTags.filter(tag => tag !== tagText);
+            updateTagsDisplay(currentTags);
+        }
+
+        function updateTagsDisplay(tags) {
+            const tagContainer = tagInput.parentElement;
+            const existingTags = tagContainer.querySelectorAll('.inline-flex');
+            existingTags.forEach(tag => tag.remove());
+
+            tags.forEach(tagText => {
+                const tagElement = document.createElement('span');
+                tagElement.className = 'inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary';
+                tagElement.innerHTML = `
+                    ${tagText}
+                    <button class="ml-1 text-primary hover:text-primary-700" onclick="removeTag('${tagText}')">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                `;
+                tagContainer.insertBefore(tagElement, tagInput);
+            });
+        }
+
+        // Auto-save functionality
+        let autoSaveTimer;
+        const markdownEditor = document.getElementById('markdown-editor');
+        const articleTitle = document.getElementById('article-title');
+
+        function autoSave() {
+            clearTimeout(autoSaveTimer);
+            autoSaveTimer = setTimeout(() => {
+                showMessage('success', 'Borrador guardado automáticamente');
+            }, 2000);
+        }
+
+        markdownEditor.addEventListener('input', autoSave);
+        articleTitle.addEventListener('input', autoSave);
+
+        // Meta description character count
+        const metaDescription = document.getElementById('meta-description');
+        const metaCharCount = document.getElementById('meta-char-count');
+
+        metaDescription.addEventListener('input', () => {
+            const count = metaDescription.value.length;
+            metaCharCount.textContent = count;
+            
+            if (count > 160) {
+                metaCharCount.classList.add('text-error');
+            } else {
+                metaCharCount.classList.remove('text-error');
+            }
+        });
+
+        // URL slug generation
+        articleTitle.addEventListener('input', () => {
+            const slug = articleTitle.value
+                .toLowerCase()
+                .replace(/[^a-z0-9\s-]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-')
+                .trim();
+            document.getElementById('url-slug').value = slug;
+        });
+
+        // Save draft functionality
+        const saveDraftBtn = document.getElementById('save-draft');
+        saveDraftBtn.addEventListener('click', () => {
+            showMessage('success', 'Borrador guardado exitosamente');
+        });
+
+        // Publish modal
+        const publishBtn = document.getElementById('publish-btn');
+        const publishModal = document.getElementById('publish-modal');
+        const closePublishModal = document.getElementById('close-publish-modal');
+        const confirmPublish = document.getElementById('confirm-publish');
+        const schedulePublish = document.getElementById('schedule-publish');
+
+        publishBtn.addEventListener('click', () => {
+            publishModal.classList.remove('hidden');
+        });
+
+        closePublishModal.addEventListener('click', () => {
+            publishModal.classList.add('hidden');
+        });
+
+        confirmPublish.addEventListener('click', () => {
+            publishModal.classList.add('hidden');
+            showMessage('success', '¡Artículo publicado exitosamente!');
+            
+            // Update article status
+            document.getElementById('article-status').value = 'published';
+        });
+
+        schedulePublish.addEventListener('click', () => {
+            publishModal.classList.add('hidden');
+            showMessage('success', 'Artículo programado para publicación');
+            
+            // Update article status
+            document.getElementById('article-status').value = 'scheduled';
+        });
+
+        // New article functionality
+        const newArticleBtn = document.getElementById('new-article-btn');
+        newArticleBtn.addEventListener('click', () => {
+            // Clear form
+            document.getElementById('article-title').value = '';
+            document.getElementById('markdown-editor').value = '';
+            document.getElementById('article-category').value = 'general';
+            document.getElementById('article-status').value = 'draft';
+            document.getElementById('meta-description').value = '';
+            document.getElementById('url-slug').value = '';
+            
+            // Clear tags
+            currentTags = [];
+            updateTagsDisplay(currentTags);
+            
+            // Remove active state from article list
+            articleItems.forEach(item => {
+                item.classList.remove('bg-primary-50', 'border-l-4', 'border-primary');
+            });
+            
+            showMessage('success', 'Nuevo artículo creado');
+        });
+
+        // Search functionality
+        const articleSearch = document.getElementById('article-search');
+        articleSearch.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            articleItems.forEach(item => {
+                const title = item.querySelector('h4').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Status filter
+        const statusFilter = document.getElementById('status-filter');
+        statusFilter.addEventListener('change', (e) => {
+            const filterValue = e.target.value;
+            articleItems.forEach(item => {
+                const status = item.querySelector('.inline-flex').textContent.toLowerCase();
+                if (filterValue === 'all' || status.includes(filterValue)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Message display function
+        function showMessage(type, message) {
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+            const successText = document.getElementById('success-text');
+            const errorText = document.getElementById('error-text');
+
+            if (type === 'success') {
+                successText.textContent = message;
+                successMessage.classList.remove('hidden');
+                errorMessage.classList.add('hidden');
+            } else {
+                errorText.textContent = message;
+                errorMessage.classList.remove('hidden');
+                successMessage.classList.add('hidden');
+            }
+
+            setTimeout(() => {
+                successMessage.classList.add('hidden');
+                errorMessage.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Initialize first article as selected
+        if (articleItems.length > 0) {
+            articleItems[0].classList.add('bg-primary-50', 'border-l-4', 'border-primary');
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                switch (e.key) {
+                    case 's':
+                        e.preventDefault();
+                        saveDraftBtn.click();
+                        break;
+                    case 'p':
+                        e.preventDefault();
+                        previewToggle.click();
+                        break;
+                    case 'Enter':
+                        e.preventDefault();
+                        publishBtn.click();
+                        break;
+                }
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
