@@ -1,6 +1,10 @@
 # HTML
 
 A modern HTML project utilizing Tailwind CSS for building responsive web applications with minimal setup.
+Created comprehensive portfolio management system with authentication, dashboard, blog, and contact interfaces
+Implemented interactive features including real-time validation, rich text editors, and filterable project grids
+Added skills management with proficiency tracking and drag-and-drop functionality
+🔒 Login credentials for app's functional experience. email: admin@portfolio.com password: admin123 email: user@demo.com password: demo123
 
 ## 🚀 Features
 
@@ -78,5 +82,6 @@ The app is built with responsive design using Tailwind CSS breakpoints:
 
 - Built by Antonio keldev
 - Powered by HTML and Tailwind CSS
+
 
 
